@@ -1,0 +1,4 @@
+*.log
+WindowsToolkit-Report-*.txt
+*.env
+.env.*
