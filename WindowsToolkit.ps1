@@ -7,7 +7,15 @@ function Show-SystemInfo {
 }
 function Show-NetworkInfo {
     Write-Host "`n--- Network Configuration ---" -ForegroundColor Cyan
-    Get-NetIPConfiguration | Format-List InterfaceAlias,IPv4Address,IPv4DefaultGateway,DNSServer
+
+    Get-NetIPConfiguration | ForEach-Object {
+        [PSCustomObject]@{
+            Adapter = $_.InterfaceAlias
+            IPv4Address = ($_.IPv4Address.IPAddress -join ', ')
+            DefaultGateway = ($_.IPv4DefaultGateway.NextHop -join ', ')
+            DNSServers = ($_.DNSServer.ServerAddresses -join ', ')
+        }
+    } | Format-List
 }
 function Test-Connectivity {
     Write-Host "`n--- Connectivity Checks ---" -ForegroundColor Cyan
