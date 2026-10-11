@@ -1,5 +1,3 @@
-# Windows Optimization Toolkit - safe help desk practice project
-# Run in PowerShell on Windows 10/11. No administrator rights required for most functions.
 $ErrorActionPreference = 'Continue'
 function Pause-Toolkit { Read-Host 'Press Enter to return to the menu' | Out-Null }
 function Show-SystemInfo {
